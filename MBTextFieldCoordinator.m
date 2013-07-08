@@ -9,7 +9,7 @@
     NSArray *_textFields;
 }
 
-+ (instancetype)newWithDelegate:(id<MBTextFieldCoordinator>)delegate
++ (instancetype)newWithDelegate:(id<MBTextFieldCoordinatorDelegate>)delegate
 {
     MBTextFieldCoordinator *chainer = [MBTextFieldCoordinator new];
     chainer.delegate = delegate;

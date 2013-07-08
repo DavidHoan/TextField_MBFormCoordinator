@@ -19,15 +19,15 @@ typedef NS_ENUM(NSInteger, MBTextFieldValidationType)
 + (instancetype)errorByAppendingErrors:(NSArray*)errors withTitleSeparator:(NSString*)titleSep descSeparator:(NSString*)descSep;
 @end
 
-@protocol MBTextFieldCoordinator <NSObject>
+@protocol MBTextFieldCoordinatorDelegate <NSObject>
 - (MBTextFieldValidationType)validationTypeForTextField:(UITextField*)field atIndex:(NSUInteger)index;
 - (MBTextFieldValidationError*)validationErrorForTextField:(UITextField*)field validatonType:(MBTextFieldValidationType)type atIndex:(NSUInteger)index;
 - (void)validationDidFailForTextfield:(UITextField*)textField atIndex:(NSUInteger)index withError:(MBTextFieldValidationError*)error;
 @end
 
 @interface MBTextFieldCoordinator : NSObject
-@property (nonatomic, weak) id<MBTextFieldCoordinator> delegate;
-+ (instancetype)newWithDelegate:(id<MBTextFieldCoordinator>)delegate;
+@property (nonatomic, weak) id<MBTextFieldCoordinatorDelegate> delegate;
++ (instancetype)newWithDelegate:(id<MBTextFieldCoordinatorDelegate>)delegate;
 - (void)chainTextFields:(NSArray*)textFields finishType:(UIReturnKeyType)type;
 - (void)makeActiveTextFieldAfterTextField:(UITextField*)textField;
 - (void)populateTextFieldsWithValues:(NSArray*)values;
