@@ -7,7 +7,7 @@ Easily chain and validate text fields.
 
 - (void)viewDidLoad 
 {
-chainer = [MBTextFieldCoordinator newWithDelegate:self];
+    chainer = [MBTextFieldCoordinator newWithDelegate:self];
     [chainer chainTextFields:@[self.firstNameField, self.lastNameField, self.emailField, self.confirmEmailField] finishType:UIReturnKeyJoin];
     [self.firstNameField becomeFirstResponder];
 }
@@ -71,9 +71,6 @@ chainer = [MBTextFieldCoordinator newWithDelegate:self];
 - (void)validationDidFailForTextfield:(UITextField *)textField atIndex:(NSUInteger)index withError:(MBTextFieldValidationError *)error
 {
     [self showAlertForError:error];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [chainer resignAllTextFields];
-    });
 }
 
 - (void)showAlertForError:(MBTextFieldValidationError*)error
