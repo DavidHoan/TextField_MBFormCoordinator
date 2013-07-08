@@ -1,4 +1,5 @@
 #import "MBTextFieldCoordinator.h"
+#import <objc/runtime.h>
 
 @interface MBTextFieldCoordinator () <UITextFieldDelegate>
 
@@ -205,6 +206,20 @@ static NSString *ValidationTypeKey = @"MBTextFieldChainerValidationTypeKey";
         [desc appendString:error.desc];
     }];
     return [MBTextFieldValidationError errorWithName:name description:desc];
+}
+
+@end
+
+@implementation NSObject (Dynamic)
+
+- (void)setDynamicValue:(id)value forKey:(NSString *)key
+{
+    objc_setAssociatedObject(self, (__bridge const void *)(key), value, OBJC_ASSOCIATION_RETAIN);
+}
+
+- (id)getDynamicValueForKey:(NSString *)key
+{
+    return objc_getAssociatedObject(self, (__bridge const void *)(key));
 }
 
 @end
