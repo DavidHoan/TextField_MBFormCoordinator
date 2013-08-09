@@ -76,14 +76,16 @@ static NSString *ValidationTypeKey = @"MBTextFieldChainerValidationTypeKey";
             [field setReturnKeyType:UIReturnKeyNext];
         }
         field.delegate = self;
-        MBFieldValidationType validationType = [self.delegate validationTypeForField:field atIndex:index];
-        if([_delegate respondsToSelector:@selector(validationErrorForField:validatonType:atIndex:)]) {
-            MBValidationError *error = [self.delegate validationErrorForField:field
+        if([_delegate respondsToSelector:@selector(validationTypeForField:atIndex:)]) {
+            MBFieldValidationType validationType = [self.delegate validationTypeForField:field atIndex:index];
+            [field setDynamicValue:@(validationType) forKey:ValidationTypeKey];
+            if([_delegate respondsToSelector:@selector(validationErrorForField:validatonType:atIndex:)]) {
+                MBValidationError *error = [self.delegate validationErrorForField:field
                                                                     validatonType:validationType
                                                                           atIndex:index];
-            [field setDynamicValue:error forKey:ErrorKey];
+                [field setDynamicValue:error forKey:ErrorKey];
+            }
         }
-        [field setDynamicValue:@(validationType) forKey:ValidationTypeKey];
         
         if([field isKindOfClass:[UITextField class]])
             [field addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -228,6 +230,12 @@ static NSString *ObjectKey = @"MBFieldCoordinatorObjectKey";
 }
 
 #pragma mark - UITextField Delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if([_delegate respondsToSelector:@selector(textFieldDidBeginEditing:)])
+        [_delegate textFieldDidBeginEditing:textField];
+}
 
 - (void)textFieldDidChange:(UITextField*)textField
 {
