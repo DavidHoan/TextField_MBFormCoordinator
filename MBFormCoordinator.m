@@ -136,7 +136,7 @@ static NSString *ObjectKey = @"MBFieldCoordinatorObjectKey";
     return [[textField getDynamicValueForKey:ValidationTypeKey] integerValue];
 }
 
-- (BOOL)fieldRequired:(id)field
+- (BOOL)isFieldRequired:(id)field
 {
     if([_delegate respondsToSelector:@selector(fieldRequired:atIndex:validationType:)])
         return [_delegate fieldRequired:field atIndex:[_textFields indexOfObject:field]
@@ -218,7 +218,10 @@ static NSString *ObjectKey = @"MBFieldCoordinatorObjectKey";
     [_textFields enumerateObjectsUsingBlock:^(UITextField *field, NSUInteger index, BOOL *stop) {
         if(![self validateTextField:field notifyDelegate:NO]) {
             [invalidFields addObject:field];
-            [invalidErrors addObject:[self errorForTextField:field]];
+            MBValidationError *error = [self errorForTextField:field];
+            if(!error && [self isFieldRequired:field])
+                error = [MBValidationError errorWithName:@"Missing field" details:@"A required field is not filled out."];
+            [invalidErrors addObject:error];
         }
     }];
     
