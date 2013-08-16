@@ -53,5 +53,5 @@ MBFormCoordinator *form = [MBFormCoordinator newWithDelegate:self];
 ```
 
 ##Notes
-MBFormCoordinator must act as the delegate to all fields, so make sure you don't set the delegate for your fields to self. The form coordinator will however forward all UITextField and UITextView delegate callbacks to the form delegate.
+`MBFormCoordinator` must act as the delegate to all fields, so make sure you don't set the delegate for your fields to self. The form coordinator will however forward all `UITextField` and `UITextView` delegate callbacks to the form delegate.
 
