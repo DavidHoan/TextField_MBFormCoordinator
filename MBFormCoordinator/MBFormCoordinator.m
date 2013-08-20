@@ -239,8 +239,7 @@ static NSString *ObjectKey = @"MBFieldCoordinatorObjectKey";
     if([_delegate respondsToSelector:@selector(textFieldDidEndEditing:)])
         [_delegate textFieldDidEndEditing:textField];
 
-    if([self validateTextField:textField notifyDelegate:YES])
-        [self advanceToFieldAfterField:textField];
+    [self advanceToFieldAfterField:textField];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
