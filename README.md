@@ -19,8 +19,6 @@ MBFormCoordinator *form = [MBFormCoordinator newWithDelegate:self];
 ```objective-c
 [form bindKeyPath:@"firstName" ofObject:_user toField:_firstNameField];
 [form bindKeyPath:@"lastName" ofObject:_user toField:_lastNameField];
-[form bindKeyPath:@"email" ofObject:_user toField:_emailField];
-[form bindKeyPath:@"bio" ofObject:_user toField:_bioField];
 ```
 
 ####Validate fields
