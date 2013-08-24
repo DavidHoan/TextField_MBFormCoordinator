@@ -1,3 +1,5 @@
+##MBFormCoordinator
+
 Easily chain, bind, and validate text fields.
 
 Every app I've ever created has always had a form of some sort. And in every app, I've found myself always recreating the same basic components: 
@@ -8,7 +10,7 @@ Every app I've ever created has always had a form of some sort. And in every app
 
 This library does this for you, so you don't have to reinvent the wheel everytime.
 
-###Features
+##Features
 ####Chain text fields:
 ```objective-c
 MBFormCoordinator *form = [MBFormCoordinator newWithDelegate:self];
@@ -19,6 +21,8 @@ MBFormCoordinator *form = [MBFormCoordinator newWithDelegate:self];
 ```objective-c
 [form bindKeyPath:@"firstName" ofObject:_user toField:_firstNameField];
 [form bindKeyPath:@"lastName" ofObject:_user toField:_lastNameField];
+[form bindKeyPath:@"email" ofObject:_user toField:_emailField];
+[form bindKeyPath:@"bio" ofObject:_user toField:_bioField];
 ```
 
 ####Validate fields
@@ -54,6 +58,6 @@ MBFormCoordinator *form = [MBFormCoordinator newWithDelegate:self];
 
 ```
 
-##Notes
-`MBFormCoordinator` must act as the delegate to all fields, so make sure you don't set the delegate for your fields to self. The form coordinator will however forward all `UITextField` and `UITextView` delegate callbacks to the form delegate.
+##Important
+`MBFormCoordinator` must be the delegate to all fields, so make sure you don't set the delegate property for your UITextField or UITextView. The form coordinator will however forward all `UITextField` and `UITextView` delegate callbacks to the form delegate.
 
