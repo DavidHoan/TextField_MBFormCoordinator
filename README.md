@@ -1,8 +1,12 @@
-##MBFormCoordinator
 Easily chain, bind, and validate text fields.
 
-###Background
-Every app I've ever created has always had a registration form of some sort. And in every app, I've found myself always recreating the same basic components: chaining fields so that a user can advance from one to the other, validating values of fields, and associating the text of a field to a model property. This small library helps do all this for you so you don't have to reinvent the wheel everytime.
+Every app I've ever created has always had a form of some sort. And in every app, I've found myself always recreating the same basic components: 
+
+- chaining fields so that a user can advance from one to the other
+- validating values of fields 
+- and associating the text of a field to a model property. 
+
+This library does this for you, so you don't have to reinvent the wheel everytime.
 
 ###Features
 ####Chain text fields:
