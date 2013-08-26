@@ -32,7 +32,7 @@ MBFormCoordinator *form = [MBFormCoordinator newWithDelegate:self];
     switch (index) {
         case 0: return MBFieldValidationTypeName;
         case 1: return MBFieldValidationTypeEmail;
-	case 2: return MBFieldValidationTypeEmailConfirmation;
+        case 2: return MBFieldValidationTypeEmailConfirmation;
         default: return MBFieldValidationTypeNone;
     }
 }
