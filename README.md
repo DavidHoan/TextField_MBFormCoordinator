@@ -6,7 +6,7 @@ Every app I've ever created has always had a form of some sort. And in every app
 
 - chaining fields so that a user can advance from one to the other
 - validating values of fields 
-- and associating the text of a field to a model property. 
+- associating the text of a field to a model property. 
 
 This library does this for you, so you don't have to reinvent the wheel everytime.
 
@@ -14,15 +14,13 @@ This library does this for you, so you don't have to reinvent the wheel everytim
 ####Chain text fields:
 ```objective-c
 MBFormCoordinator *form = [MBFormCoordinator newWithDelegate:self];
-[form chainFields:@[_firstNameField, _lastNameField, _emailField, _confirmEmailField] finishType:UIReturnKeyJoin];
+[form chainFields:@[_firstNameField, _emailField, _confirmEmailField] finishType:UIReturnKeyJoin];
 ```
 
 ####Bind field values to a model
 ```objective-c
 [form bindKeyPath:@"firstName" ofObject:_user toField:_firstNameField];
-[form bindKeyPath:@"lastName" ofObject:_user toField:_lastNameField];
 [form bindKeyPath:@"email" ofObject:_user toField:_emailField];
-[form bindKeyPath:@"bio" ofObject:_user toField:_bioField];
 ```
 
 ####Validate fields
@@ -33,9 +31,8 @@ MBFormCoordinator *form = [MBFormCoordinator newWithDelegate:self];
 {
     switch (index) {
         case 0: return MBFieldValidationTypeName;
-        case 1: return MBFieldValidationTypeLastName;
-        case 2: return MBFieldValidationTypeEmail;
-        case 3: return MBFieldValidationTypeEmailConfirmation;
+        case 1: return MBFieldValidationTypeEmail;
+	case 2: return MBFieldValidationTypeEmailConfirmation;
         default: return MBFieldValidationTypeNone;
     }
 }
